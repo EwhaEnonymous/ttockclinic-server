@@ -11,7 +11,7 @@ Gradle, SpringBoot 2.5.3, Java 11
 ├── README.md                 - 리드미 파일   
 │  
 ├── src/main/                      - 어플리케이션 폴더   
-│   ├── java/com/ewhaenonymous/ttockclinic        	
+│   ├── java/com/ewhaenonymous/ttockclinic   
 │   │   ├── controller/       - HTTP 요청    
 │   │   ├── domain/       - Entity(선별진료소, 문진표)  
 │   │   ├── exception/           - 예외처리  
