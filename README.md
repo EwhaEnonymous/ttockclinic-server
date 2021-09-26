@@ -1,39 +1,88 @@
 ## 똑똑진료소 서버
 
-### 프로젝트 버전 및 구성
+### 주요 라이브러리 버전
 
-Gradle
-
-SpringBoot 2.5.3
-
-Java 11 
+Gradle, SpringBoot 2.5.3, Java 11 
 
 ---
 
-### Local DB 연결을 위한 설정 (추후 AWS RDS로 변경 예정)
+### 프로젝트 코드 구조
 
-- Local DB 생성
+├── README.md                 - 리드미 파일   
+│  
+├── src/main/                      - 어플리케이션 폴더   
+│   ├── java/com/ewhaenonymous/ttockclinic        	
+│   │   ├── controller/       - HTTP 요청    
+│   │   ├── domain/       - Entity(선별진료소, 문진표)  
+│   │   ├── exception/           - 예외처리  
+│   │   ├── payload/         - 요청, 응답을 위한 DTO  
+│   │   └── repository/       - 데이터베이스 접근  
+│   │   └── service/             - 비즈니스 로직                                                            
 
-```SQL
-~% mysql -u root -p //mysql 접속
+│   │   └── Scheduler.java            - 하루 지났을 때 문진표 삭제를 위한 Scheduling                                               
 
-mysql> create database ttockclinic_db;
-mysql> create user 'admin'@'%' identified by 'admin';
-mysql> grant all on ttockclinic_db.* to 'admin'@'%';
-```
+│   │   └── TtockclinicApplication.java                                                           
 
-터미널에서 mysql 접속 후 springboot와 연결할 데이터베이스와 해당 데이터베이스 사용자 생성 및 권한 부여 수행
+│   ├── resources               
+│   │   ├── application.yml        - 공통 설정   
+│   │   └── application-dev.yml            - 개발 시 설정   
+│   │   └── application-real.yml            - 배포 시 설정   
+│ 
+├── data/nginx/conf.d                 - nginx 설정   
+├── Dockerfile               - Springboot Docker image 생성을 위한 파일  
+├── docker-compose.yml              - App, Nginx, Certbot Container 생성   
+├── build.gradle          - 사용 라이브러리    
+├── gradlew                    
+├── init-letsencrypt.sh         - 도메인 SSL 인증을 위한 스크립트  
+└── settings.gradle               
 
 ---
 
-### 코드 추가 위치
+### 시스템 아키텍쳐
 
-```text
-src/main/java/com/ewhaenonymous/ttockclinic 
-```
+![아키텍쳐](./img/Architecture.png)
 
--> com.ewhaenonymous.ttockclinic 패키지 내에 코드 생성하면 됨! 
+---
 
--> API 1차 설계 완료
--> DB 1차 설계 완료
+### Database 및 도메인 설계
+
+![DB](./img/DB.png)
+
+![Domain](./img/Domain.png)
+
+---
+
+### API Docs
+
+[Postman-ttockclinic](https://documenter.getpostman.com/view/12950398/UUxtFWEm)
+
+![공공API-확진자수](./img/PublicAPI.png)
+
+![PostPaper](./img/PostPaper.png)
+
+![GetPaper](./img/GetPaperInfo.png)
+
+![GetClinics](./img/GetClincsList.png)
+
+![GetClinicInfo](./img/GetClinicInfo.png)
+
+![QR](./img/QRupdate.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
