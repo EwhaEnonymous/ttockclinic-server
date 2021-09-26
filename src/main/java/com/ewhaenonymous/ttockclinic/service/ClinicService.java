@@ -19,7 +19,7 @@ public class ClinicService {
 
     public List<ClinicListResponse> findClinicsBySidoAndSiGunGu(String siDo, String siGunGu){   
         List<ClinicListResponse> clinicListResponses = new ArrayList<>();
-        List<Clinic> clinics = clinicRepository.findBySiDoAndSiGunGuContaining(siDo, siGunGu);
+        List<Clinic> clinics = clinicRepository.findBySiDoAndSiGunGuContainingOOrderByWaitings(siDo, siGunGu);
 
         for(Clinic clinic : clinics){
             ClinicListResponse clinicListResponse = new ClinicListResponse(clinic);

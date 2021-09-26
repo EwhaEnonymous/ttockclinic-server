@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface ClinicRepository extends CrudRepository<Clinic, Long> {
     Optional<Clinic> findById(Long id);
 
-    @Query(value = "select * from clinic where si_do = ?1 and (si_gun_gu like %?2%);", nativeQuery = true)
-    List<Clinic> findBySiDoAndSiGunGuContaining(String siDo, String siGunGu); //확인하기!
+    @Query(value = "select * from clinic where si_do = ?1 and (si_gun_gu like %?2%) order by waitings;", nativeQuery = true)
+    List<Clinic> findBySiDoAndSiGunGuContainingOOrderByWaitings(String siDo, String siGunGu); //확인하기!
 }
